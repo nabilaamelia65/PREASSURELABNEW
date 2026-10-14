@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Waves, ArrowDown, Gauge, Info, Compass } from 'lucide-react';
+import { Waves, Gauge, Info, Compass } from 'lucide-react';
 
 export default function SimulationFluid() {
   const [depth, setDepth] = useState(4.0); // meter (0 to 10m)
@@ -30,7 +30,7 @@ export default function SimulationFluid() {
         {/* Controls Column */}
         <div className="w-full lg:w-5/12 space-y-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF0FF] text-[#5C5EE6] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0EDFF] text-[#6C5CE7] text-xs font-bold mb-2">
               <Waves className="w-3.5 h-3.5" />
               <span>Simulasi 2: Tekanan Hidrostatis</span>
             </div>
@@ -54,8 +54,8 @@ export default function SimulationFluid() {
                   onClick={() => setFluidType(key)}
                   className={`p-2.5 rounded-xl text-left border text-xs transition cursor-pointer ${
                     fluidType === key
-                      ? 'bg-[#5C5EE6] text-white border-[#5C5EE6] shadow-sm font-semibold'
-                      : 'bg-[#F8F9FD] text-[#373848] border-[#E5E7F0] hover:bg-[#EEF0FF]'
+                      ? 'bg-[#6C5CE7] text-white border-[#6C5CE7] shadow-sm font-semibold'
+                      : 'bg-[#F8F9FD] text-[#373848] border-[#E5E7F0] hover:bg-[#F0EDFF]'
                   }`}
                 >
                   <div className="font-bold">{f.name}</div>
@@ -70,7 +70,7 @@ export default function SimulationFluid() {
             <div>
               <div className="flex justify-between items-center text-xs font-bold text-[#141527] mb-1.5">
                 <span>Kedalaman Menyelam (h):</span>
-                <span className="font-mono text-[#5C5EE6] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
+                <span className="font-mono text-[#6C5CE7] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
                   {depth.toFixed(1)} meter
                 </span>
               </div>
@@ -81,7 +81,7 @@ export default function SimulationFluid() {
                 step="0.5"
                 value={depth}
                 onChange={(e) => setDepth(Number(e.target.value))}
-                className="w-full accent-[#5C5EE6] cursor-pointer"
+                className="w-full accent-[#6C5CE7] cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-[#686889] mt-1">
                 <span>Permukaan (0 m)</span>
@@ -145,7 +145,7 @@ export default function SimulationFluid() {
             
             {/* Header label */}
             <div className="absolute top-4 left-4 flex items-center gap-2 text-xs font-semibold text-[#686889] z-20">
-              <Compass className="w-4 h-4 text-[#5C5EE6]" />
+              <Compass className="w-4 h-4 text-[#6C5CE7]" />
               <span>Tabung Pengujian Hidrostatis (Skala Kedalaman 0 - 10 m)</span>
             </div>
 
@@ -202,7 +202,7 @@ export default function SimulationFluid() {
                   }}
                 >
                   {/* Diver / Sensor avatar */}
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-lg border-2 border-[#5C5EE6] flex items-center justify-center text-2xl animate-pulse">
+                  <div className="w-12 h-12 rounded-2xl bg-white shadow-lg border-2 border-[#6C5CE7] flex items-center justify-center text-2xl animate-pulse">
                     🤿
                   </div>
 
@@ -219,7 +219,7 @@ export default function SimulationFluid() {
 
             {/* Bottom Insight */}
             <div className="mt-4 bg-white/90 p-3 rounded-xl border border-[#E5E7F0] text-xs text-[#373848] flex items-start gap-2.5">
-              <Info className="w-4 h-4 text-[#5C5EE6] shrink-0 mt-0.5" />
+              <Info className="w-4 h-4 text-[#6C5CE7] shrink-0 mt-0.5" />
               <div>
                 <strong className="text-[#141527]">Mengapa Telinga Berdengung saat Menyelam? </strong>
                 Semakin dalam kamu menyelam, semakin banyak tumpukan partikel air di atas tubuhmu yang menekan gendang telinga.

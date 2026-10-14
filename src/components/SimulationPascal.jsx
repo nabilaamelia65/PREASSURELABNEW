@@ -6,8 +6,8 @@ export default function SimulationPascal() {
   const [areaRatio, setAreaRatio] = useState(25); // Piston 2 is 25x larger than Piston 1
 
   // Area Piston 1 = 10 cm^2 = 0.001 m^2
-  const area1 = 0.001; 
-  const area2 = area1 * areaRatio; // 0.025 m^2
+  const _area1 = 0.001; 
+  const _area2 = _area1 * areaRatio; // 0.025 m^2
 
   // By Pascal's principle: P1 = P2 -> F1 / A1 = F2 / A2 -> F2 = F1 * (A2 / A1)
   const outputForce = inputForce * areaRatio; // Newton
@@ -25,7 +25,7 @@ export default function SimulationPascal() {
         {/* Controls Column */}
         <div className="w-full lg:w-5/12 space-y-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF0FF] text-[#5C5EE6] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0EDFF] text-[#6C5CE7] text-xs font-bold mb-2">
               <Truck className="w-3.5 h-3.5" />
               <span>Simulasi 3: Hukum Pascal</span>
             </div>
@@ -42,7 +42,7 @@ export default function SimulationPascal() {
             <div>
               <div className="flex justify-between items-center text-xs font-bold text-[#141527] mb-1.5">
                 <span>Gaya Input Tekan (F₁):</span>
-                <span className="font-mono text-[#5C5EE6] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
+                <span className="font-mono text-[#6C5CE7] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
                   {inputForce} N (~{(inputForce / 9.8).toFixed(1)} kg)
                 </span>
               </div>
@@ -53,7 +53,7 @@ export default function SimulationPascal() {
                 step="25"
                 value={inputForce}
                 onChange={(e) => setInputForce(Number(e.target.value))}
-                className="w-full accent-[#5C5EE6] cursor-pointer"
+                className="w-full accent-[#6C5CE7] cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-[#686889] mt-1">
                 <span>Tenaga Tangan (50 N)</span>
@@ -64,7 +64,7 @@ export default function SimulationPascal() {
             <div>
               <div className="flex justify-between items-center text-xs font-bold text-[#141527] mb-1.5">
                 <span>Perbandingan Luas Piston (A₂ / A₁):</span>
-                <span className="font-mono text-[#5C5EE6] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
+                <span className="font-mono text-[#6C5CE7] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
                   {areaRatio}&times; Lipat Lebih Besar
                 </span>
               </div>
@@ -75,7 +75,7 @@ export default function SimulationPascal() {
                 step="5"
                 value={areaRatio}
                 onChange={(e) => setAreaRatio(Number(e.target.value))}
-                className="w-full accent-[#5C5EE6] cursor-pointer"
+                className="w-full accent-[#6C5CE7] cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-[#686889] mt-1">
                 <span>Kecil (5&times;)</span>
@@ -175,7 +175,7 @@ export default function SimulationPascal() {
 
             {/* Bottom Insight */}
             <div className="mt-4 bg-white/90 p-3 rounded-xl border border-[#E5E7F0] text-xs text-[#373848] flex items-start gap-2.5">
-              <Info className="w-4 h-4 text-[#5C5EE6] shrink-0 mt-0.5" />
+              <Info className="w-4 h-4 text-[#6C5CE7] shrink-0 mt-0.5" />
               <div>
                 <strong className="text-[#141527]">Aplikasi Nyata Hukum Pascal: </strong>
                 Dongkrak mobil di tempat cuci mobil, rem hidrolik piringan pada sepeda motor, dan alat berat ekskavator (bego) yang mampu mengangkat beton raksasa.

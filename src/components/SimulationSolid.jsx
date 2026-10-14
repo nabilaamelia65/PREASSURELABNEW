@@ -29,7 +29,7 @@ export default function SimulationSolid() {
         {/* Controls Column */}
         <div className="w-full lg:w-5/12 space-y-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF0FF] text-[#5C5EE6] text-xs font-bold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0EDFF] text-[#6C5CE7] text-xs font-bold mb-2">
               <Layers className="w-3.5 h-3.5" />
               <span>Simulasi 1: Tekanan Zat Padat</span>
             </div>
@@ -56,8 +56,8 @@ export default function SimulationSolid() {
                   }}
                   className={`px-3 py-2 rounded-xl text-left border text-xs transition cursor-pointer ${
                     Math.abs(area - p.area) < 0.001
-                      ? 'bg-[#5C5EE6] text-white border-[#5C5EE6] shadow-sm font-semibold'
-                      : 'bg-[#F8F9FD] text-[#373848] border-[#E5E7F0] hover:bg-[#EEF0FF]'
+                      ? 'bg-[#6C5CE7] text-white border-[#6C5CE7] shadow-sm font-semibold'
+                      : 'bg-[#F8F9FD] text-[#373848] border-[#E5E7F0] hover:bg-[#F0EDFF]'
                   }`}
                 >
                   <div className="font-medium truncate">{p.label}</div>
@@ -72,7 +72,7 @@ export default function SimulationSolid() {
             <div>
               <div className="flex justify-between items-center text-xs font-bold text-[#141527] mb-1.5">
                 <span>Gaya Tekan / Berat Beban (F):</span>
-                <span className="font-mono text-[#5C5EE6] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
+                <span className="font-mono text-[#6C5CE7] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
                   {force} N
                 </span>
               </div>
@@ -83,7 +83,7 @@ export default function SimulationSolid() {
                 step="25"
                 value={force}
                 onChange={(e) => setForce(Number(e.target.value))}
-                className="w-full accent-[#5C5EE6] cursor-pointer"
+                className="w-full accent-[#6C5CE7] cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-[#686889] mt-1">
                 <span>Ringan (50 N)</span>
@@ -96,7 +96,7 @@ export default function SimulationSolid() {
             <div>
               <div className="flex justify-between items-center text-xs font-bold text-[#141527] mb-1.5">
                 <span>Luas Bidang Tekan (A):</span>
-                <span className="font-mono text-[#5C5EE6] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
+                <span className="font-mono text-[#6C5CE7] text-sm bg-white px-2 py-0.5 rounded border border-[#E5E7F0]">
                   {area} m² ({(area * 10000).toFixed(0)} cm²)
                 </span>
               </div>
@@ -107,7 +107,7 @@ export default function SimulationSolid() {
                 step="0.005"
                 value={area}
                 onChange={(e) => setArea(Number(e.target.value))}
-                className="w-full accent-[#5C5EE6] cursor-pointer"
+                className="w-full accent-[#6C5CE7] cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-[#686889] mt-1">
                 <span>Runcing / Hak (0.001 m²)</span>
@@ -117,7 +117,7 @@ export default function SimulationSolid() {
 
             <button
               onClick={() => { setForce(200); setArea(0.02); }}
-              className="flex items-center gap-1.5 text-xs text-[#686889] hover:text-[#5C5EE6] transition font-medium cursor-pointer"
+              className="flex items-center gap-1.5 text-xs text-[#686889] hover:text-[#6C5CE7] transition font-medium cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset Posisi Normal</span>
@@ -138,7 +138,7 @@ export default function SimulationSolid() {
             <div className="mt-2 text-2xl font-extrabold text-white flex items-baseline gap-2">
               <span>{pressure.toLocaleString()}</span>
               <span className="text-sm font-normal text-[#A8ACC1]">Pascal (Pa)</span>
-              <span className="text-xs bg-[#5C5EE6] text-white px-2 py-0.5 rounded-full ml-auto">
+              <span className="text-xs bg-[#6C5CE7] text-white px-2 py-0.5 rounded-full ml-auto">
                 {pressureKPa} kPa
               </span>
             </div>
@@ -158,7 +158,7 @@ export default function SimulationSolid() {
             {/* Manometer Floating Card */}
             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl border border-[#E5E7F0] shadow-sm text-right">
               <div className="text-[10px] uppercase font-bold text-[#686889]">Indikator Tekanan</div>
-              <div className="text-lg font-black text-[#5C5EE6]">
+              <div className="text-lg font-black text-[#6C5CE7]">
                 {pressure > 100000 ? '⚡ SANGAT TINGGI' : pressure > 20000 ? '⚠️ TINGGI' : '✅ SEDANG / AMAN'}
               </div>
             </div>
@@ -168,13 +168,13 @@ export default function SimulationSolid() {
               
               {/* Force Arrow Indicator */}
               <div 
-                className="flex flex-col items-center text-[#5C5EE6] transition-all duration-300"
+                className="flex flex-col items-center text-[#6C5CE7] transition-all duration-300"
                 style={{
                   transform: `translateY(-${Math.max(0, 100 - sinkDepth)}px)`,
                   opacity: 0.95
                 }}
               >
-                <div className="text-[11px] font-bold bg-white px-2 py-0.5 rounded-full shadow-xs border border-[#5C5EE6]/30">
+                <div className="text-[11px] font-bold bg-white px-2 py-0.5 rounded-full shadow-xs border border-[#6C5CE7]/30">
                   Gaya Beban: {force} N
                 </div>
                 <ArrowDown className="w-6 h-6 animate-bounce" />
@@ -182,7 +182,7 @@ export default function SimulationSolid() {
 
               {/* The Block Object */}
               <div 
-                className="bg-gradient-to-b from-[#5C5EE6] to-[#3B3DBA] rounded-t-lg shadow-md border-t-2 border-white/40 flex items-center justify-center text-white text-xs font-bold transition-all duration-300"
+                className="bg-gradient-to-b from-[#6C5CE7] to-[#3B3DBA] rounded-t-lg shadow-md border-t-2 border-white/40 flex items-center justify-center text-white text-xs font-bold transition-all duration-300"
                 style={{
                   width: `${blockWidthPct}%`,
                   height: '75px',
@@ -217,7 +217,7 @@ export default function SimulationSolid() {
 
             {/* Bottom Real-life Analogy Hint */}
             <div className="mt-4 bg-white/90 p-3 rounded-xl border border-[#E5E7F0] text-xs text-[#373848] flex items-start gap-2.5">
-              <Info className="w-4 h-4 text-[#5C5EE6] shrink-0 mt-0.5" />
+              <Info className="w-4 h-4 text-[#6C5CE7] shrink-0 mt-0.5" />
               <div>
                 <strong className="text-[#141527]">Kesimpulan Interaktif: </strong>
                 {area <= 0.005 ? (

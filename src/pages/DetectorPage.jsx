@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BrainCircuit, AlertTriangle, CheckCircle, HelpCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { AlertTriangle, CheckCircle, ArrowLeft, ArrowRight, Sparkles, Lightbulb } from 'lucide-react';
 
-export default function MisconceptionDetector() {
+export default function DetectorPage({ navigate }) {
   const [selectedCase, setSelectedCase] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -110,87 +110,104 @@ export default function MisconceptionDetector() {
   };
 
   return (
-    <div id="detector" className="bg-[#141527] text-white rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden shadow-xl">
+    <div className="space-y-8 pb-12">
       
-      {/* Background glow orb */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#5C5EE6]/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="relative z-10">
-        
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5C5EE6]/20 text-[#38BDF8] text-xs font-bold border border-[#38BDF8]/30 mb-2">
-              <BrainCircuit className="w-4 h-4 text-[#38BDF8]" />
-              <span>AI Misconception Diagnostic Engine</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Pendeteksi Miskonsepsi Fisika
-            </h2>
-            <p className="text-xs sm:text-sm text-[#A8ACC1] mt-1 max-w-xl">
-              Sistem diagnostik yang mendeteksi pola salah paham siswa dan memberikan pembetulan konsep seketika.
-            </p>
-          </div>
-
-          {/* Case switcher tabs */}
-          <div className="flex items-center gap-1.5 bg-[#202138] p-1.5 rounded-2xl border border-white/10 overflow-x-auto">
-            {cases.map((c, i) => (
-              <button
-                key={c.id}
-                onClick={() => {
-                  setSelectedCase(i);
-                  setSelectedOption(null);
-                  setShowExplanation(false);
-                }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
-                  selectedCase === i
-                    ? 'bg-[#5C5EE6] text-white shadow-sm'
-                    : 'text-[#A8ACC1] hover:text-white hover:bg-white/5'
-                }`}
-              >
-                Kasus {i + 1}
-              </button>
-            ))}
-          </div>
+      {/* Top Header & Breadcrumbs */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <button 
+            onClick={() => navigate('home')}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#625F7A] hover:text-[#6C5CE7] transition mb-2 cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Kembali ke Beranda</span>
+          </button>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#14132B] tracking-tight">
+            Detektor Miskonsepsi Fisika
+          </h1>
+          <p className="text-xs sm:text-sm text-[#625F7A] mt-1">
+            Engine diagnostik untuk mengungkap kekeliruan pemikiran umum tentang tekanan dan solusinya.
+          </p>
         </div>
 
-        {/* Diagnostic Card Frame */}
-        <div className="bg-[#202138] rounded-2xl border border-white/10 p-6 sm:p-8">
+        {/* Case selector tabs */}
+        <div className="glass-panel p-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm">
+          {cases.map((c, i) => (
+            <button
+              key={c.id}
+              onClick={() => {
+                setSelectedCase(i);
+                setSelectedOption(null);
+                setShowExplanation(false);
+              }}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap cursor-pointer ${
+                selectedCase === i
+                  ? 'bg-[#131127] text-white shadow-sm'
+                  : 'text-[#625F7A] hover:text-[#14132B] hover:bg-white/60'
+              }`}
+            >
+              Kasus {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Dark Card Stage (Refined from reference image dark container) */}
+      <div className="dark-glass-card rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden shadow-2xl">
+        
+        {/* Glow orb */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#6C5CE7]/25 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 space-y-6">
           
-          <div className="flex items-center justify-between text-xs text-[#38BDF8] font-semibold mb-3">
-            <span>Kategori: {current.topic}</span>
-            <span>Kasus {selectedCase + 1} dari {cases.length}</span>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#6C5CE7] text-white">
+                {current.topic}
+              </span>
+              <span className="text-xs text-purple-200">
+                Studi Kasus {selectedCase + 1} dari {cases.length}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs text-purple-200 font-medium">
+              <Lightbulb className="w-4 h-4 text-amber-400" />
+              <span>Pilih satu opsi jawaban untuk verifikasi</span>
+            </div>
           </div>
 
-          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
-            {current.scenario}
-          </h3>
+          {/* Scenario Text */}
+          <div className="space-y-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-white leading-relaxed">
+              {current.scenario}
+            </h2>
+          </div>
 
           {/* Options */}
-          <div className="space-y-3 mb-6">
+          <div className="space-y-3 pt-2">
             {current.options.map((opt, idx) => {
               const isChosen = selectedOption === idx;
-              let borderStyle = 'border-white/10 bg-[#141527]/60 hover:bg-[#141527] hover:border-[#5C5EE6]/50';
+              let borderStyle = 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30';
               if (isChosen) {
                 borderStyle = opt.isMisconception
-                  ? 'border-amber-500 bg-amber-500/10'
-                  : 'border-emerald-500 bg-emerald-500/10';
+                  ? 'border-rose-400 bg-rose-500/20 text-rose-100'
+                  : 'border-emerald-400 bg-emerald-500/20 text-emerald-100';
               }
 
               return (
                 <button
                   key={opt.id}
                   onClick={() => handleSelect(idx)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all flex items-start gap-3.5 cursor-pointer ${borderStyle}`}
+                  className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all flex items-start gap-4 cursor-pointer ${borderStyle}`}
                 >
-                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+                  <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5 ${
                     isChosen
-                      ? opt.isMisconception ? 'bg-amber-500 text-black' : 'bg-emerald-500 text-black'
-                      : 'bg-white/10 text-white'
+                      ? opt.isMisconception ? 'bg-rose-500 text-white' : 'bg-emerald-500 text-white'
+                      : 'bg-white/15 text-white'
                   }`}>
                     {opt.id}
                   </span>
-                  <span className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <span className="text-xs sm:text-sm text-slate-100 leading-relaxed font-medium">
                     {opt.text}
                   </span>
                 </button>
@@ -198,18 +215,18 @@ export default function MisconceptionDetector() {
             })}
           </div>
 
-          {/* Diagnostic Result Box */}
+          {/* Explanation Box */}
           {showExplanation && selectedOption !== null && (
-            <div className={`p-5 rounded-2xl border transition-all animate-fadeIn ${
+            <div className={`p-5 sm:p-6 rounded-2xl border transition-all animate-fadeIn ${
               current.options[selectedOption].isMisconception
-                ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
-                : 'bg-emerald-950/40 border-emerald-500/50 text-emerald-200'
+                ? 'bg-rose-950/50 border-rose-500/40 text-rose-100'
+                : 'bg-emerald-950/50 border-emerald-500/40 text-emerald-100'
             }`}>
-              <div className="flex items-center gap-2 font-bold text-sm mb-2">
+              <div className="flex items-center gap-2 font-bold text-sm sm:text-base mb-2">
                 {current.options[selectedOption].isMisconception ? (
-                  <AlertTriangle className="w-5 h-5 text-amber-400" />
+                  <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0" />
                 ) : (
-                  <CheckCircle className="w-5 h-5 text-emerald-400" />
+                  <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
                 )}
                 <span>{current.options[selectedOption].feedback}</span>
               </div>
@@ -219,13 +236,23 @@ export default function MisconceptionDetector() {
             </div>
           )}
 
-          {/* Next Button */}
-          <div className="mt-6 flex justify-end">
+          {/* Action Row */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/10">
+            <button
+              onClick={() => {
+                setSelectedOption(null);
+                setShowExplanation(false);
+              }}
+              className="text-xs text-purple-200 hover:text-white transition font-medium cursor-pointer"
+            >
+              Reset Jawaban
+            </button>
+
             <button
               onClick={handleNextCase}
-              className="px-5 py-2.5 rounded-full bg-[#5C5EE6] hover:bg-[#4B4DC7] text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer shadow-md"
+              className="px-6 py-3 rounded-full bg-[#6C5CE7] hover:bg-[#5A4AD1] text-white text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer shadow-md shadow-[#6C5CE7]/30 active:scale-98"
             >
-              <span>Uji Kasus Miskonsepsi Lainnya</span>
+              <span>Uji Kasus Berikutnya</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -233,6 +260,28 @@ export default function MisconceptionDetector() {
         </div>
 
       </div>
+
+      {/* Next Step Banner */}
+      <div className="glass-panel rounded-3xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div className="flex items-center gap-3 text-left">
+          <div className="w-10 h-10 rounded-2xl bg-[#6C5CE7]/10 text-[#6C5CE7] flex items-center justify-center font-bold shrink-0">
+            <Sparkles className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="text-sm font-bold text-[#14132B]">Siap uji pemahaman secara komprehensif?</div>
+            <div className="text-xs text-[#625F7A]">Jawab 5 soal tantangan HOTS berhadiah confetti di Kuis Gamifikasi.</div>
+          </div>
+        </div>
+
+        <button
+          onClick={() => navigate('quiz')}
+          className="px-5 py-2.5 rounded-full bg-[#131127] hover:bg-[#201D3D] text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer whitespace-nowrap shadow-sm active:scale-98"
+        >
+          <span>Masuk ke Kuis Tantangan</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
     </div>
   );
 }
